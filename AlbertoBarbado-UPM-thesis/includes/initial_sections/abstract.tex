@@ -1,0 +1,36 @@
+\topskip0pt
+\vspace*{15em}
+
+%\begin{center}
+\chapter*{Abstract}
+
+    % Opcion (I)
+    %Anomaly detection is a crucial task within many industry applications, from discovering fraudulent credit card transactions to detecting faults within mechanical system. The reason is that it can find patterns in data that do not follow the expected behaviour.
+    
+    % Opcion (II): Importance anomaly detection + Unsupervised ML
+    Anomaly detection is a crucial task within many real-world applications since it can find patterns in data that do not follow the expected behaviour. Consequently, it serves for addressing different business problems, from discovering fraudulent credit card transactions to detecting faults within mechanical systems. Among the different approaches for detecting anomalies within large amounts of data, unsupervised techniques, especially \textit{unsupervised Machine Learning} (ML), are particularly useful because there is normally a scarcity of labelled anomalies, hindering the usage of supervised methods.
+    
+    % Problem with using only binary outputs + XAI
+    Many of those unsupervised methods are black boxes that only provide a binary output, lacking explanation about the factors behind the model's decision. A solution for solving this issue is the usage of \textit{Explainable Artificial Intelligence} (XAI) techniques. One of the aims of XAI is enabling humans to understand a model's decision. However, most of the research on XAI deals with supervised models. Hence, there is a need of additional research for the usage of XAI, in general, and for explaining unsupervised anomaly detection models in particular.
+    
+    % Problems with XAI: Metrics & Domain Knowledge
+    Nevertheless, there are several XAI methods that can be considered for this purpose, and it is not trivial to compare them for finding the best one to choose for a specific use case. This highlights the need for XAI-specific metrics that can quantitatively measure different aspects of the quality of the explanations that have been generated. Another limitation is that XAI can provide explanations that contradict prior domain knowledge, leading to potentially misleading or incorrect conclusions. This leads to the research problems studied within this thesis.
+    %The reason is that the patterns that are inferred form the available data may not account for causality aspects.
+
+    % Proposal: Metrics for rule-extraction and feature relevance methods
+    % Real use cases: comms and fleet. Comms proposal, fleet proposal
+    In the first part of the thesis, we work with rule extraction-based techniques applied to unsupervised ML algorithms for anomaly detection. We propose two metrics, \textit{stability} and \textit{diversity}, for measuring the quality of the explanations, along with other metrics. We also include two new algorithmic variations of an already-existing post-hoc XAI technique for rule extraction. This leads to an end-to-end framework for generating and explaining anomalies from unsupervised ML algorithms, which has been published as an open-source library.
+    
+    After that, we study the applicability of XAI for explaining anomalies within real-world industry contexts. First, we analyse it within the context of telecommunications data, where we propose an algorithm for generating visual and counterfactual explanations for unsupervised ML algorithms for anomaly detection. The algorithm includes prior domain knowledge during the phase for searching hyperparameter combinations that not only have a good model performance, but also generate explanations that are aligned with that prior knowledge. 
+    
+    Then, we study XAI for explaining fuel anomalies of diesel and petrol vehicles. We propose an approach for generating explanations that identify vehicles with anomalous fuel consumption, the potential causes behind them, and the impact that those anomalies have on the fuel usage. These explanations are used for generating fuel saving recommendations that are adjusted depending on two different user profiles that will use them: fleet managers and fleet operators. The proposal includes an evaluation with XAI-specific metrics, and the combination of XAI techniques with prior domain knowledge for both explanation generation and metric evaluations. 
+    
+    Our work is relevant at a scientific, industry and business level: we have published two papers that are already cited, there are two patents associated to our proposals, and these proposals are already part of software products deployed to production.
+    
+%\end{center}
+
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Abstract}
+
+\newpage

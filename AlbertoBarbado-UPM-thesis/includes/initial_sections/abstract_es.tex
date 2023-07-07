@@ -1,0 +1,26 @@
+\topskip0pt
+\vspace*{15em}
+
+%\begin{center}
+\chapter*{Resumen}
+Detectar anomalías es crucial en muchas aplicaciones industriales debido a que se pueden encontrar patrones en los datos que no siguen un comportamiento esperado. Así, sirve para abordar distintos problemas de negocio, desde el descubrimiento de transacciones fraudulentas a la detección de fallos dentro de un sistema mecánico. Dentro de las soluciones para detectar anomalías en grandes volúmenes de datos destacan las de Aprendizaje Automático (ML) no supervisado, especialmente cuando no se dispone de información previas sobre dichas anomalías.
+
+Muchas de esas técnicas son "cajas negras" que no incluyen sin explicaciones sobre factores detrás de la decisión del modelo. Una solución para solventarlo es la Inteligencia Artificial Explicable (XAI). Con XAI se ayuda a qué el ser humano entienda la decisión que ha tomado el modelo. Sin embargo, la mayor parte de la investigación sobre XAI se ha centrado en modelos de ML supervisados, existiendo un ámbito por explorar sobre los modelos no supervisados en general, y particularmente en el caso de los de detección de anomalías.
+
+Existen distintas técnicas de XAI que se pueden considerar para este propósito y no es trivial ver cómo poderlas comparar para elegir la mejor para cada caso de uso específico. Esto resalta la necesidad de disponer de métricas de XAI que sirvan para poder medir, de manera cuantitativa, distintos aspectos relacionados con las explicaciones que se han generado. Otra limitación es que las técnicas de XAI pueden generar explicaciones que contradigan el conocimiento a priori del dominio, lo que puede llevar a dar información potencialmente engañosa o a tomar conclusiones erróneas. Esto conduce a los problemas de investigación estudiados en esta tesis.
+
+En la primera parte de la tesis se trabaja con técnicas basadas en la extracción de reglas aplicadas a
+algoritmos de ML no supervisados para la detección de anomalías. Proponemos dos métricas, estabilidad y
+diversidad, para medir la calidad de las explicaciones. También proponemos dos algoritmos basados en una técnica post-hoc de XAI ya existente para la extracción de reglas. Esto conduce a una solución integral para generar y explicar anomalías sobre de algoritmos ML no supervisados, publicado como una librería de código abierto.
+
+Después estudiamos las técnicas de XAI para explicar anomalías en contextos industriales reales. Primero, lo analizamos dentro del contexto de los datos de telecomunicaciones, proponiendo un algoritmo para generar explicaciones visuales y contrafactuales para ML no supervisado para detección de anomalías. Nuestro algoritmo incluye conocimiento previo del dominio durante la fase de búsqueda de hiperparámetros no sólo considerando un buen rendimiento del modelo, sino también el que las explicaciones estén alineadas con ese conocimiento previo.
+
+Tras ello, estudiamos el uso de XAI para explicar anomalías de combustible de vehículos. Proponemos una metodología para generar explicaciones que identifiquen vehículos con consumo anómalo de combustible, las causas detrás de ello y el impacto que esas anomalías tienen en el uso de combustible. Estas explicaciones generarán recomendaciones de ahorro de combustible ajustadas para dos perfiles diferentes: gestores de flotas y operadores de flotas. La propuesta incluye una evaluación con métricas específicas de XAI, y la combinación de XAI con conocimiento previo del dominio para la generación de explicaciones y para la evaluación de métricas.
+
+Nuestro trabajo es relevante a nivel científico, industrial y empresarial: hemos publicado dos
+trabajos ya citados, se han generado dos patentes industriales, y nuestras propuestas ya forman parte de productos de software desplegados en producción.
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Resumen}
+
+\newpage

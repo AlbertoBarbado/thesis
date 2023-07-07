@@ -1,0 +1,254 @@
+% Create a one-sided article document type
+\documentclass[a4paper, twoside, 12pt]{book}
+
+% Define the course variables that are gonna be used several times
+\newcommand{\university}{Universidad\ Politécnica\ de\ Madrid}
+\newcommand{\school}{Departamento de Inteligencia Artificial \protect\\
+                     Escuela\ Técnica\ Superior\ de\ Ingenieros Informáticos}
+\newcommand{\degree}{}    
+\newcommand{\name}{Towards Explainable Machine Learning for Anomaly Detection in Real-World Contexts}
+\newcommand{\tfm}{PhD \ Thesis}
+\newcommand{\nameShort}{Towards Explainable Machine Learning for Anomaly Detection}
+
+\newcommand{\me}{Alberto Barbado González}
+\newcommand{\supervisor}{Dr. Óscar Corcho}
+
+% Configure the metadata of the PDF document
+\usepackage[
+	bookmarks       = true,             % Show the bookmarks
+	unicode         = true,             % Use Unicode                 
+	pdftoolbar      = true,             % Show Acrobat’s toolbar
+	pdfmenubar      = true,             % Show Acrobat’s menu
+	pdffitwindow    = false,            % Window fit to page when opened
+	pdfstartview    = {FitH},           % Fit the page width to the window
+	pdfauthor       = {\me},            % The author of this document
+	pdftitle        = {\name\ --\ \me}, % The title of this document
+	pdfsubject      = {\name},          % The subject of this document
+	pdfkeywords     = {\name},          % The keywords of this document
+	pdfnewwindow    = true,             % Open the links in a new PDF window
+	colorlinks      = true,             % Use colored links
+	linkcolor       = blue,             % Internal links color
+	citecolor       = blue,             % Bibliographic links color
+	filecolor       = cyan,             % File links color
+	urlcolor        = magenta           % External links color
+]{hyperref}
+
+% Redefine the size and margins (delete the 'twoside' indentation)
+\usepackage[a4paper]{geometry}
+% Define the geometry of the document
+\newgeometry {
+    top = 2.2cm, 
+    bottom = 2.2cm, 
+    right = 2cm, 
+    left = 2cm
+}
+% Use UTF-8 as input encoding
+\usepackage[utf8]{inputenc}
+% Use a modern font (that is not pixelated)
+\usepackage{lmodern}
+% Use microtype to improve readability
+\usepackage[protrusion = true, expansion = true]{microtype} 
+% Use multiple columns
+\usepackage{multicol}
+% Display two figures next to each other
+\usepackage{subfigure}
+\usepackage[subfigure]{tocloft}
+% Display list of Equations
+\usepackage{tocloft}
+% Insert empty pages
+\usepackage{afterpage}
+% Configure style aspects of the document
+\usepackage{caption}            % To configure the captions
+\usepackage{siunitx}            % For SI units
+\usepackage{graphicx}           % To include graphics
+\usepackage[dvipsnames]{xcolor} % To configure colors
+\usepackage{fancyhdr}           % To configure the header and footer
+\pagestyle{fancy}               % Use a fancy header style
+\fancyhf{}                      % Set the header format
+\fancyheadoffset{0.0 cm}        % Set the header offset
+\lhead{\tfm}                    % Set the header right-side contents
+\rhead{\nameShort}              % Set the header left-side contents
+\cfoot{\thepage}                % Set the footer page number
+
+% Additional Packages
+%\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\usepackage[
+    backend=biber,
+    style=apa, 
+    sorting=nyt,
+    maxbibnames=999,
+    maxcitenames=2,
+    mincitenames=1
+    ]{biblatex}
+\usepackage{xcolor, colortbl}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tocbibind}
+\usepackage{tocloft}
+\usepackage{xpatch}
+\usepackage{array,booktabs}
+\usepackage{makecell}
+\usepackage{pdfpages}
+\DeclareUnicodeCharacter{0301}{}
+\usepackage[T1]{fontenc}
+
+
+% Add hyperref
+\usepackage{hyperref}
+
+%\usepackage[usenames,dvipsnames]{xcolor} % TODO: LO QUITO PORQUE CREO QUE NO HACE NADA
+\usepackage[breakable, theorems, skins]{tcolorbox}
+\tcbset{enhanced}
+
+\newcommand*\rot{\rotatebox{90}}
+
+% Color boxes
+\DeclareRobustCommand{\mybox}[2][gray!20]{%
+\begin{tcolorbox}[   %% Adjust the following parameters at will.
+        breakable,
+        left=0pt,
+        right=0pt,
+        top=0pt,
+        bottom=0pt,
+        colback=#1,
+        colframe=#1,
+        width=\dimexpr\textwidth\relax, 
+        enlarge left by=0mm,
+        boxsep=5pt,
+        arc=0pt,outer arc=0pt,
+        ]
+        #2
+\end{tcolorbox}
+}
+
+
+%\usepackage{rotating}
+\usepackage[counterclockwise, figuresleft]{rotating}
+\addbibresource{main.bib}
+
+% Create a custom command shortcut
+\renewcommand{\arraystretch}{1.3} % Modify the vertical spacing of the tables
+\raggedbottom                     % Modify the vertical spacing of enumerated environments
+
+% Set empty page 
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage
+}
+
+\newcommand{\fontnormal}{\fontsize{14 pt}{12 pt}\selectfont}
+
+% Set the title format
+\title {
+	\vspace*{1.0 cm}
+	\Large\textbf{\uppercase{\university}} \\
+	\vspace*{0.5 cm}
+	\large\textbf{\uppercase{\school}} \\
+	%\rule{470 pt}{2 pt} \\ %380
+	\vspace*{2 cm}
+	\LARGE\textbf{\uppercase{\name}} \\
+	%\rule{470 pt}{2 pt} \\
+	\vspace*{2 cm}
+	%\large\text{\uppercase{\degree}} \\
+
+    \vspace*{0.5 cm}
+	\large\text{\uppercase{\tfm}} \\
+	\vspace*{2.0 cm}
+	
+	\normalsize
+	\begin{tabbing}
+        \hspace*{0.4\linewidth} \= \hspace*{0.5\linewidth} \= \kill
+    	\> Author: \' \textbf{\me} \\[0.25cm]
+    	\> Supervisor: \' \textbf{\supervisor} \\
+    	\> Supervisor: \' \textbf{Dr. Richard Benjamins} \\
+    \end{tabbing}
+    
+    \vspace*{1 cm}
+    
+    %\parbox{\linewidth}{
+    %   \centering%
+    %   \fontnormal%
+    %   A thesis submitted in fulfilment of the requirements \protect\\
+    %   for the degree of Doctor of Philosophy \protect\\
+    %   in the \protect\\
+    %   Escuela Técnica Superior de Ingenieros Informáticos \protect\\
+    %   Departamento de Inteligencia Artificial}
+    %   }
+
+}
+
+% Set the author format [NOT USED]
+\author {
+	\normalsize
+	\begin{tabbing}
+        \hspace*{0.4\linewidth} \= \hspace*{0.5\linewidth} \= \kill
+    	\> Author: \' \textbf{\me} \\[0.25cm]
+    	\> Supervisor: \' \textbf{\supervisor} \\
+    	\> Supervisor: \' \textbf{\author} \\
+    \end{tabbing}
+    
+    \vspace{2cm}
+}
+
+% Set the date format
+\date { 
+    December, 2022
+}
+
+% A macro to print the title
+\makeatletter
+\def\printtitle{{\centering\@title\par}}
+\makeatother
+
+% A macro to print the author
+\makeatletter
+\def\printauthor{{\centering\large\@author}}
+\makeatother
+
+% A macro to print the date
+\makeatletter
+\def\printdate{{\centering\@date}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Start the document
+\begin{document}
+    % Include the cover
+    \afterpage{\blankpage}
+    %\input{includes/initial_sections/cubierta_v1.tex}
+    \includepdf{includes/initial_sections/diapo_cubierta.pdf}
+    \input{cover.tex}
+    
+    % Initial Sections
+    \input{includes/initial_sections/tribunal}
+
+    \input{includes/initial_sections/index}
+    \input{includes/initial_sections/index_figures}
+    \input{includes/initial_sections/index_tables}
+    \input{includes/initial_sections/index_algorithms}
+    \input{includes/initial_sections/index_equations}
+    
+    \input{includes/initial_sections/abstract}
+    \input{includes/initial_sections/abstract_es}
+    %\input{includes/initial_sections/declaration_of_authorship}
+    \input{includes/initial_sections/acknowledgement}
+
+    % Main Document Sections
+    \input{includes/content_sections/1.Introduction}
+    \input{includes/content_sections/2.SOTA}
+    \input{includes/content_sections/3.Objectives}
+    \input{includes/content_sections/4.RuleExtraction}
+    \input{includes/content_sections/5.CommsXAI}
+    \input{includes/content_sections/6.FleetXAI}
+    
+    % Final Sections
+    %\input{includes/development}
+    \input{includes/final_sections/conclusions}
+    \input{includes/final_sections/references}
+    \input{includes/final_sections/annex}
+
+\end{document}
+% Finish the document

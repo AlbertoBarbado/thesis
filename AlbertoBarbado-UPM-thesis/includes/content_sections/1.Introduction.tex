@@ -1,0 +1,76 @@
+\chapter{Introduction}\label{ch:introduction}
+% Intro anomaly detection & use cases (in industry)
+\textit{Anomaly detection} refers to the task of finding patterns in data that do not follow the expected behaviour \parencite{chandola2009anomaly}. It finds extensive use within several industry applications, such as fraud detection in card transactions, network intrusion for cyber-security, or fault detection in critical systems, among others. The reason is that anomaly detection can find important actionable information inside large amounts of data that can answer many of the industry questions that appear within those use cases.
+Anomaly detection is different from another task known as \textit{noise removal} because it aims to find relevant patterns useful for a further analysis, as opposed to detecting unwanted data points that need to be removed to improve the quality of the data set. It is also different from \textit{novelty detection} in the sense that this last tasks focuses on detecting previously unobserved patterns in the data (that will be incorporated later on in the data set).
+
+% Types of anomaly detection (statistical, using ML...) +  challenges on anomaly detection
+There are several approaches for anomaly detection, which go from statistical techniques, to the usage of Machine Learning (ML) \parencite{chandola2009anomaly} or Deep Learning (DL) methods \parencite{chalapathy2019deep}. Depending on the technique considered, there are different challenges that emerge, like the availability of labeled data for training supervised models, the differentiation between anomalies and noise, or the adaptability of the techniques when there are significant data drifts. Nonetheless, there is a common problem to most of the anomaly detection techniques: the lack of explainability. An anomaly detection model may simply provide binary output without including additional information about the reason of the decision, what is insufficient for many real-world industry use cases. The users that receive the output of the anomaly detection model need to both trust the model's decision, as well as understand what factors may be causing that anomaly. It is true that many of these aspects are covered with approaches like \textit{root cause analysis} \parencite{andersen2006root}. However, when working with ML models, these problems are research lines that are not fully explored yet, even more when working with unsupervised models that do not have prior information about what is an anomaly, something common within many real-world contexts.
+
+% One of the challenges, problem of anomalies not explained
+The lack of explanations in ML in general can be addressed through the field of Explainable Artificial Intelligence (XAI). XAI aims to solve the interpretability-performance trade-off of ML models (where models that are more opaque tend to provide better performance results), as well as enabling humans to understand (and consequently trust) a model's decision \parencite{arrieta2020explainable}. For this last aspect XAI draws insights from Social Sciences for considering the psychology of explanations. This is also relevant within the field of anomaly detection, since XAI can be used for complementing the binary model's decision by providing insights about the potential causes behind the anomalies.
+
+% use of XAI in industry + follows RAI
+Thus, within real-world industry use cases, instead of developing an anomaly detection-based product that simply provides a binary output, we can develop one that also provides explanations about the model's decisions. Considering XAI in this way from the earliest product stages is what Responsible Artificial Intelligence (RAI) principles propose \parencite{benjamins2019responsible}.
+
+% Problem of knowing when an explanation is good or not
+However, one of the problems that appear here is that there are several XAI methods and it is not trivial to know which one to use for a specific use case. As opposed to the measurement of a model's performance through metrics, the field of XAI-metrics is not very much explored \parencite{arrieta2020explainable}, and there is a lack of quantitative metrics for measuring different aspects of the quality of the explanations. 
+
+% Problem of explanations that do not follow prior domain knowledge
+Another obstacle is that XAI techniques inherit a problem within ML: the patterns that are inferred from the available data may contradict prior domain knowledge, not accounting for causality aspects, thus leading to misleading or incorrect conclusions \parencite{beckh2021explainable}. This is specially important within real-world contexts, where the alignment with prior domain knowledge needs to be ensured during the model's training and/or the explanation generation process. 
+
+% Leads to Research Question 
+All this leads to a research question: \textit{Is it possible to use XAI techniques for explaining the results of applying unsupervised learning algorithms for anomaly detection within real-world contexts?}. This research question in itself encapsulates several aspects, because to fully answer it, we need to quantitatively measure the quality of the explanations, and take into account prior domain knowledge along with XAI for anomaly detection, either for adjusting the explanations generated or for benchmarking the quality of the explanations against it.
+
+This thesis answers this research question by first conducting a general study about XAI applied to anomaly detection, and then proceeding to answer the question within two real-world contexts: anomaly detection within communication data, and anomaly detection over the fuel consumption of diesel and petrol vehicles. 
+
+For the first study, we work with rule-extraction based methods as the XAI approaches that explain the unsupervised anomaly detection algorithms, where we use OneClass SVM (OCSVM) models with different kernels. Here, we assessed that even though XAI techniques may be model agnostic, the explanations may be significantly different, so some techniques are better suited than others for specific contexts. For measuring this, we translate several XAI-metrics aspects reflected in different metric taxonomies into novel algorithms for generating those metrics. Specifically, we propose a way to measure the \textit{stability} and \textit{diversity} of rule-based explanations. We also proposed some variations over one of the rule-extraction algorithms to assess if the results improve within the context of anomaly detection.
+
+For the following studies, we consider the aforementioned industry use cases, using real-world data from Telefónica. First, for the use case of anomaly detection within communication data, we propose an XAI model-agnostic approach for generating visual and counterfactual explanations that includes prior domain knowledge for the grid search phase in order to find the hyperparameters that provide explanations that are aligned with it. We assessed how this does not have a significant penalization on the model performance.
+
+Finally, for the use case of anomaly detection on fuel consumption of diesel and petrol vehicles, we propose an approach for generating explanations that indicate why a specific vehicle has an anomalous fuel consumption, which features are causing it, how much do they impact on the extra fuel usage, and how much fuel could be saved if their values changed to a particular reference. These explanations are used for generating fuel saving recommendations that are adjusted depending on two different user profiles that will use them: fleet managers and fleet operators. With this last use case we answer the research question by using XAI techniques for generating explanations over the output of unsupervised anomaly detection algorithms in a real-world context, including the evaluation of the results with XAI-specific metrics, and the combination of XAI techniques with prior domain knowledge both within the explanation generation and within the metric evaluations.
+
+\section{Thesis structure}\label{sec:ch1-thesis-structure}
+In this section, we present the structure of the thesis. As a general reference, the methodology and its corresponding evaluations are placed within the same chapters. The structure is as follows:
+
+\begin{itemize}
+\item In \hyperref[ch:sota]{Chapter} \ref{ch:sota}, we first provide some background about the State of the Art (SOTA) regarding the generic context of the thesis. Thus, we cover aspects related to unsupervised ML for anomaly detection, rule extraction techniques in XAI, interpretable ML models, XAI for anomaly detection, XAI metrics and domain knowledge combined with XAI. Second, we analyse the SOTA regarding the use case of vehicle fuel consumption. Thus, we review the literature about factors for fuel consumption in a vehicle, ML for predicting fuel consumption, and anomaly detection in fuel consumption.
+\item In \hyperref[chap:3-objetives]{Chapter} \ref{chap:3-objetives}, we describe the research problems and objectives of this thesis.
+\item In \hyperref[chap:4-rule-extraction]{Chapter} \ref{chap:4-rule-extraction} we present our proposal for both extracting and evaluating rule extraction-based explanations obtained using XAI techniques over unsupervised ML algorithms for anomaly detection. The chapter also includes the corresponding evaluations.
+\item In \hyperref[chap:5-comms-xai]{Chapter} \ref{chap:5-comms-xai}, we study one of the two real-world industry use cases within this thesis: anomaly detection within communication data. Here, we propose an XAI method that incorporates prior knowledge during the detection and explanations of the anomalies. The chapter also includes the corresponding evaluations.
+\item In \hyperref[chap:6-fleet-xai]{Chapter} \ref{chap:6-fleet-xai}, we analyse the second real-world industry use case within this thesis: anomaly detection on the fuel consumption of petrol and diesel vehicles. We propose a method for generating explanations over the output of unsupervised anomaly detection algorithms that take into account domain knowledge for generating fuel saving recommendations that are adjusted depending on two user profiles. The method incorporates an evaluation through XAI-specific metrics, which includes an assessment of the explanation quality against prior domain knowledge. The chapter also includes the corresponding evaluations.
+\item In \hyperref[ch-conclusions]{Chapter} \ref{ch-conclusions}, we present the conclusions of this thesis, indicating future research lines.
+\item Finally, \hyperref[ch:annex]{Chapter} \ref{ch:annex} we present the Annex with additional details and information about the contributions and evaluations of this thesis.
+\end{itemize}
+
+\section{Scientific dissemination of results}\label{sec:ch2-dissemination-results}
+The main contributions of this thesis have been published (or submitted for publication) to the following conferences, journals, patents or open source libraries.
+
+\begin{itemize}
+\item The analysis between XAI and Responsible AI (RAI) within industry contexts, which serves as a background for this thesis, has been published in:\\ Richard Benjamins, \textbf{Alberto Barbado}, and Daniel Sierra. “Responsible AI bydesign in practice”. In: \textit{Proceedings of the Human-Centered AI: Trustworthiness of AI Models \& Data (HAI) track at AAAI Fall Symposium, DC}. Nov. 2019. \\url: https://arxiv.org/html/2001.05375.
+
+\item A review of the State of the Art (SOTA) for XAI, which led to discover the research line covered by this thesis, has been published in:\\ Alejandro Barredo Arrieta, Natalia Dıaz-Rodrıguez, Javier Del Ser, Adrien Bennetot, Siham Tabik, \textbf{Alberto Barbado}, Salvador Garcıa, Sergio Gil-López, Daniel Molina,Richard Benjamins, et al. “Explainable Artificial Intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI”. In: \textit{Information Fusion} 58 (2020), pp. 82–115. doi:https://doi.org/10.1016/j.inffus.2019.12.012. 
+\\ This is related to \hyperref[ch:sota]{Chapter} \ref{ch:sota}.
+
+\item \hyperref[chap:4-rule-extraction]{Chapter} \ref{chap:4-rule-extraction} has been published in: \\\textbf{Alberto Barbado}, Óscar Corcho, and Richard Benjamins. “Rule extraction in unsupervised anomaly detection for model explainability: Application to OneClassSVM”. In: \textit{Expert Systems with Applications} 189 (2022), p.116100. issn: 0957-4174. \\doi: https://doi.org/10.1016/j.eswa.2021.116100.
+% \mybox{}
+\item \hyperref[chap:4-rule-extraction]{Chapter} \ref{chap:4-rule-extraction} is also related to our open source library \textbf{HyperRulEx} for XAI with post-hoc model agnostic rule extraction and XAI-metrics, available at:
+\\\textbf{Alberto Barbado}. “HyperRulEx: A common framework for rule extraction”. \\10.5281/zenodo.3387762 (2021)
+
+\item \hyperref[chap:5-comms-xai]{Chapter} \ref{chap:5-comms-xai} is published within the granted patent:
+\\\textbf{Alberto Barbado}, Pedro A. Alonso Baigorri, Federico Pérez, Raquel Crespo, and Álvaro Sánchez. “Métodos para Detectar Anomalías en Comunicaciones de Datos”. ES Patent, WO2021014029A1. (2021)
+
+\item \hyperref[chap:6-fleet-xai]{Chapter} \ref{chap:6-fleet-xai} has been published in:
+\\\textbf{Alberto Barbado} and Óscar Corcho. “Interpretable Machine Learning Models for Predicting and Explaining Vehicle Fuel Consumption Anomalies”. \\In: \textit{Engineering Applications of Artificial Intelligence} 115, p.105222. issn: 0952-1976. \\doi: https://doi.org/10.1016/j.engappai.2022.105222. (2022)
+
+\item \hyperref[chap:6-fleet-xai]{Chapter} \ref{chap:6-fleet-xai} also led to the granted patent:
+\\\textbf{Alberto Barbado}, Pedro A. Alonso Baigorri, Federico Pérez, Raquel Crespo, and Daniel  Garcia. “Método  y  Programas  de  Ordenador  para  Gestión  de  Flotas  de Vehículos”. ES Patent, WO2021260246A1. (2021)
+
+%\item A detailed complementary analysis to the aforementioned contributions related to \hyperref[chap:6-fleet-xai]{Chapter} \ref{chap:6-fleet-xai} is also available as a preprint in: 
+%\\\textbf{Alberto Barbado}, Óscar Corcho. “Understanding Factors Affecting Fuel Con-
+%sumption of Vehicles Through Explainable AI: A Use Case With Explainable
+%Boosting Machines”. In: arXiv e-prints (2021), arXiv–2107.
+
+\end{itemize}
+
+\newpage
+
